@@ -1,0 +1,27 @@
+{
+  "name": "api-gym-pass",
+  "version": "1.0.0",
+  "description": "API GymPass",
+  "main": "index.js",
+  "scripts": {
+    "start:dev": "tsx watch src/server.ts",
+    "start": "node build/server.js",
+    "build": "tsup src --out-dir build"
+  },
+  "keywords": [],
+  "author": "devmauriciogirardi@gmail.com",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "16.1.2",
+    "fastify": "4.17.0",
+    "zod": "3.21.4"
+  },
+  "devDependencies": {
+    "@rocketseat/eslint-config": "1.2.0",
+    "@types/node": "20.2.5",
+    "eslint": "8.41.0",
+    "tsup": "6.7.0",
+    "tsx": "3.12.7",
+    "typescript": "5.0.4"
+  }
+}
