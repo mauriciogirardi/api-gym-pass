@@ -1,10 +1,16 @@
 import fastify from 'fastify'
-import { appRoutes } from './http/routes'
+import { fastifyJwt } from '@fastify/jwt'
 import { ZodError } from 'zod'
+import { appRoutes } from './http/routes'
 import { env } from './env'
+
+const { JWT_SECRET, NODE_ENV } = env
 
 export const app = fastify()
 
+app.register(fastifyJwt, {
+  secret: JWT_SECRET,
+})
 app.register(appRoutes)
 
 app.setErrorHandler((error, _, reply) => {
@@ -14,7 +20,7 @@ app.setErrorHandler((error, _, reply) => {
       .send({ message: 'Validation error!', issues: error.format() })
   }
 
-  if (env.NODE_ENV !== 'production') {
+  if (NODE_ENV !== 'production') {
     console.error(error)
   } else {
     // TODO Here we should log to an external tool like DataDog/NewRelic/Sentry.
